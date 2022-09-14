@@ -50,6 +50,23 @@ const drinksBoughtOrPreiumMem = (drinksBought > 2 || preiumMember);
 const canBeAppllied = drinksBoughtOrPreiumMem && !offerExpired;
 alert("can the offer be applied?" + canBeAppllied);
 
+// write a function that returns the first and last name of a student
+
+// 1. prompts for first and last name
+// 2. store first and last name in variables
+// 3. define the function -> parameters? yes
+// // first name * lastName
+// 4. call the function --> arguments? yes
+// // variables
+
+const nameOne = prompt ("whats your first name?");
+const nameTwo = prompt ("whtas your last name?");
+
+prompt (whatsYourName()) //first and last namenction whatsYourName (first,last) {
+    let fullName = first + last;
+    return fullName;
+}
+
 
 
 

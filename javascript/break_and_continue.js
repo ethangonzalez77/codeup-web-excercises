@@ -1,4 +1,4 @@
- chooseNum = prompt("pick an odd number between 1 and 50");
+
 // let oddNum
 // while(1) {
 //     oddNum = prompt('Please enter an odd number between 1 and 50')
@@ -20,48 +20,39 @@
 //     }
 // }
 
-
+////          ignore everything above this line 👈👈👈👈👈👈👈👈👈👈👈👈👈👈👈
 
  //prompt for choosing a number 1-50
  //use loop and br and break to keep prompting user for ineak to keep prompting user for invalid input
  //use loop and continue to output all odd numbers betweeen 1-50
+let chooseNum = prompt("pick an odd number between 1 and 50");
+let enteredNum = (chooseNum % 2);
 
- let chooseNum;
- for (let i = 1;; i++){
-     chooseNum = prompt("pick an odd number between 1 and 50");
-     if(chooseNum % 2 !== 0){
 
+
+ for (let i = 1;i < 3; i++){
+
+     if(enteredNum !== 0){
+        alert("you got odd number: " + chooseNum)
+         break;
      }
-     break;
+     else {
+         alert(chooseNum + " is not valid");
+     }
  }
 
 
-
-
-
-
- let loopNuM = (chooseNum % 2);
+//let chooseNum2 = prompt("pick an odd number between 1 and 50");//   ignore this specific line 👈👈👈👈👈👈👈👈👈
 
  for(let i = 1; i < 50; i++) {
 
-    if (loopNuM !== 0 ){
-        console.log("you got an odd number" + loopNuM);
-        break;
-    }
-    else {
-        console.log("looks like you got an ever number" + loopNuM);
-    }
- }
+     if (i % 2 === 0) {
+         console.log("ewwwww an even number, skip this 👉 " + i);
 
-
-
- for(let i = 1; i < 50; i++) {
-
-     if (i === chooseNum) {
-         console.log("skip this 👉 " + i);
          continue;
-     } else if (i % 2 !== 0) {
-         console.log("this " + i + "is an odd number");
+     }
+     else if (i % 2 !== 0) {
+         console.log("this " + i + " is an odd number");
      }
  }
 

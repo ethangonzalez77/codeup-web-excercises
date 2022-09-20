@@ -1,6 +1,4 @@
-//for (var i = 0; i < 65540; i++) {
-
-
+"use strict";
     // for (var i = 1; i < 100; i++) {
     //
     //     if (i % 2 !== 0) {
@@ -20,6 +18,8 @@
 // }
 // ignor everything bove this line 👈👈👈👈👈👈👈👈👈👈👈👈👈👈
 /*
+
+
 While Loops
 Create a file named while.js in the js directory.
 
@@ -43,16 +43,20 @@ Create a file named while.js in the js directory.
 32768
 65536
 */
-let i = 2
+let g = 2
 
-while (i <= 65540){
+while (g <= 65540){
 
-    console.log("finally!" + i);
+    console.log("finally!" + g);
     //i = i * i;
    // i = i **2;
-    i = i * 2;
+    g = g * 2;
 }
-// the cones question
+//////                         🍦🍦🍦🍦🍦🍦🍦  the cones question  do-while loops   🍦🍦🍦🍦🍦🍦🍦🍦
+/*
+An ice cream seller can't go home until she sells all of her cones. First write enough code that generates a random number between 50 and 100 representing the amount of cones to sell before you start your loop. Inside of the loop your code should generate another random number between 1 and 5, simulating the amount of cones being bought by her clients. Use a do-while loop to log to the console the amount of cones sold to each person. The below code shows how to get the random numbers for this exercise.
+
+ */
 
 var allCones = Math.floor(Math.random() * 50) + 50;
 let x = allCones;

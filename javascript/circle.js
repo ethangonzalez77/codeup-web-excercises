@@ -1,4 +1,4 @@
-alert("yooo")
+// alert("yooo")
 
 
 (function() {
@@ -19,13 +19,15 @@ alert("yooo")
 
         logInfo: function (doRounding) {
             // TODO: complete this method.
-            if (doRounding > x) {
+            let result = 0;
+            if (doRounding === true) {
                let roundedAfter = Math.round(doRounding) ;
-               return roundedAfter
+
+               result = roundedAfter;
             }
             else {
                 let completeV = doRounding;
-                return completeV;
+                result = completeV;
 
             }
 
@@ -33,7 +35,7 @@ alert("yooo")
             // If doRounding is true, round the result to the nearest integer.
             // Otherwise, output the complete value
 
-            console.log("Area of a circle with radius: " + this.radius + ", is: ");
+            console.log("Area of a circle with radius: " + this.radius + ", is: " + result);
         }
     };
 

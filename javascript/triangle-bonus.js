@@ -36,9 +36,32 @@ function newArray () {
 console.log(newArray());
 
 
-
-
-
+/**
+ * the following below is another warm up 👇
+ *
+ *
+ */
+*/
+Create a function to sort the array from lowest to highest. Make sure the function accepts an array and returns an array.
+// example input: [5,8,2,6,9,3,2];
+// expected output: [2,2,3,5,6,8,9] // length: 7
+2. Write a function that returns the reading status of each of the following books:
+    var library = [
+       {
+          author: 'Bill Gates',
+          title: 'The Road Ahead',
+          readingStatus: true
+       },
+       {
+          author: 'Steve Jobs',
+          title: 'Walter Isaacson',
+          readingStatus: true
+       },
+       {
+          author: 'Suzanne Collins',
+          title:  'Mockingjay: The Final Book of The Hunger Games',
+          readingStatus: false
+       }];
 
 
 

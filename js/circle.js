@@ -1,4 +1,3 @@
-// alert("yooo")
 
 
 (function() {
@@ -19,17 +18,10 @@
 
         logInfo: function (doRounding) {
             // TODO: complete this method.
-            let result = 0;
-            if (doRounding === true) {
-               let roundedAfter = Math.round(doRounding) ;
-
-               result = roundedAfter;
+            if(doRounding){
+                return Math.round(circle.getArea());
             }
-            else {
-                let completeV = doRounding;
-                result = completeV;
-
-            }
+            return circle.getArea();
 
 
             // If doRounding is true, round the result to the nearest integer.
@@ -53,4 +45,4 @@
     circle.logInfo(false);
     console.log("Circle information rounded to the nearest whole number");
     circle.logInfo(true);
-})();
+})()

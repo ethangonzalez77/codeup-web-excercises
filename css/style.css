@@ -1,4 +1,15 @@
 
 .fancy-header {
     color: purple;
+    text-align: center;
+    text-decoration: underline;
+}
+.fancy-titles {
+    color: antiquewhite;
+    text-decoration: underline;
+}
+#fancy-background {
+    background-color: cadetblue;
+    text-decoration: underline;
+    background-image: url("../cu_images/githubicon.png") ;
 }

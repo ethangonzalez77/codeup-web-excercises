@@ -12,4 +12,26 @@
     background-color: cadetblue;
     text-decoration: underline;
     background-image: url("../cu_images/githubicon.png") ;
+    font-family: 'Indie Flower', cursive;
+    color: wheat;
 }
+ol {
+    list-style: upper-alpha;
+}
+ul {
+    list-style: square;
+}
+table,th,td  {
+    border: 3px solid;
+    font-size: 40px;
+    text-decoration: underline;
+    border-collapse: collapse;
+    font-family: "Audiowide", sans-serif;
+}
+a :hover {
+    color: orangered;
+}
+a :checked {
+    color: saddlebrown;
+}
+

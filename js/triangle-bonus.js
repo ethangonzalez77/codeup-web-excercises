@@ -108,93 +108,133 @@ Writing functions that take in inputs, process, and return outputs.
 //
 // }
 // timesFour()
+//
+// function timesFour(input) {
+//     if (isNaN(input)){
+//         return false;
+//     }
+//     else if (typeof(input)==="number" || parseInt(input)){
+//         return Number(input) * 4
+//     }
+//     else{
+//         return false;
+//     }
+// }
+//
+//
+//
+//
+//
+// // Define a function named convertDaystoHours that takes in one input Days. Return the conversion of the number of days into total hours. If the input is not numeric or a numeric string, convertDaystoHours, should return false.
+// // convertDaystoHours(0) //0
+// // convertDaystoHours('5') // 120
+// // convertDaystoHours('Texas') //false 👈
+// // convertDaystoHours([2, 1, 0]) //false
+// // convertDaystoHours(true) //false
+// // convertDaystoHours(false) //false
+//
+// function convertDaystoHours (input) {
+//
+//     if(isNaN(input)){
+//         return false;
+//     }
+//     else if (typeof(input)==="number" || parseInt(input)){
+//         return Number(input) * 24;
+//     }
+//     else{
+//         return false;
+//     }
+//
+// }
+//
+//
+//
+//
+//
+//
+// // Write a function named calculateTax that takes in two inputs representing the totalPaid and the taxPercent. If both inputs are numeric or numeric strings, calculateTax should return the total with tax added in a string looking like: “$XX.XX”. If either or both inputs are not numeric or numeric strings, calculateTax should return false.
+// // calculateTax(25, 8)               // “$27.00"
+// // calculateTax(10, 12)             // “$11.20”
+// // calculateTax(120, 15.5)           // “$138.60"
+// // calculateTax(10, true)           // false
+// // calculateTax([1, 2, 3], 10)      // false
+// // calculateTax(“Codeup”, 100)      // false
+// // calculateTax()                   // false
+//
+//
+// function calculateTax(totalpaid, taxPercent) {
+//     let percent = taxPercent / 100;
+//     if (isNaN(totalpaid && taxPercent)){
+//         return false;
+//     }
+//     else if (typeof(totalpaid && taxPercent) === "number" || parseInt(totalpaid && taxPercent)){
+//         return `$${Number((totalpaid) + (totalpaid * percent)).toFixed(2)} Nice`
+//     }
+//     else{
+//         return false;
+//     }
+//    // console.log(some);  log + tab
+// }
+// //__________________________________________________________
+// /**
+// Write a function to return an array of only the Even numbers from an array with the numbers 1 through 10
+// example input: [1,2,3,4,5] expected output: [2,4]
+// */
+// let myArray = [1,2,3,4,5,6,7,8,9,10];
+// function findEvenNum () {
+//     let a2 = myArray[1];
+//     let a4 = myArray[3];
+//     let a6 = myArray[5];
+//     let a8 = myArray[7];
+//     let a10 = myArray[9];
+//     let result = [a2,a4,a6,a8,a10];
+//     return result;
+// }
+// /**
+// Write a function that takes an array of objects and a string as arguments. Add a property with key ‘continent’ and value equal to the string to each of the objects. Return the new array of objects. Don’t mutate the original array.
+//     example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
+// expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
+//  */
+//
+// //----------------------------------------------------------------
+//
+//
+// // example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
+// // expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
+//
+// let places = [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
+//
+// //---------------
+//
 
-function timesFour(input) {
-    if (isNaN(input)){
-        return false;
-    }
-    else if (typeof(input)==="number" || parseInt(input)){
-        return Number(input) * 4
-    }
-    else{
-        return false;
-    }
-}
-
-
-
-
-
-// Define a function named convertDaystoHours that takes in one input Days. Return the conversion of the number of days into total hours. If the input is not numeric or a numeric string, convertDaystoHours, should return false.
-// convertDaystoHours(0) //0
-// convertDaystoHours('5') // 120
-// convertDaystoHours('Texas') //false 👈
-// convertDaystoHours([2, 1, 0]) //false
-// convertDaystoHours(true) //false
-// convertDaystoHours(false) //false
-
-function convertDaystoHours (input) {
-
-    if(isNaN(input)){
-        return false;
-    }
-    else if (typeof(input)==="number" || parseInt(input)){
-        return Number(input) * 24;
-    }
-    else{
-        return false;
-    }
-
-}
 
 
 
 
 
 
-// Write a function named calculateTax that takes in two inputs representing the totalPaid and the taxPercent. If both inputs are numeric or numeric strings, calculateTax should return the total with tax added in a string looking like: “$XX.XX”. If either or both inputs are not numeric or numeric strings, calculateTax should return false.
-// calculateTax(25, 8)               // “$27.00"
-// calculateTax(10, 12)             // “$11.20”
-// calculateTax(120, 15.5)           // “$138.60"
-// calculateTax(10, true)           // false
-// calculateTax([1, 2, 3], 10)      // false
-// calculateTax(“Codeup”, 100)      // false
-// calculateTax()                   // false
 
 
-function calculateTax(totalpaid, taxPercent) {
-    let percent = taxPercent / 100;
-    if (isNaN(totalpaid && taxPercent)){
-        return false;
-    }
-    else if (typeof(totalpaid && taxPercent) === "number" || parseInt(totalpaid && taxPercent)){
-        return `$${Number((totalpaid) + (totalpaid * percent)).toFixed(2)} Nice`
-    }
-    else{
-        return false;
-    }
-   // console.log(some);  log + tab
-}
-//__________________________________________________________
-/**
-Write a function to return an array of only the Even numbers from an array with the numbers 1 through 10
-example input: [1,2,3,4,5] expected output: [2,4]
-*/
-let myArray = [1,2,3,4,5,6,7,8,9,10];
-function findEvenNum () {
-    let a2 = myArray[1];
-    let a4 = myArray[3];
-    let a6 = myArray[5];
-    let a8 = myArray[7];
-    let a10 = myArray[9];
-    let result = [a2,a4,a6,a8,a10];
-    return result;
-}
-/**
-Write a function that takes an array of objects and a string as arguments. Add a property with key ‘continent’ and value equal to the string to each of the objects. Return the new array of objects. Don’t mutate the original array.
-    example input: [{ city: 'Tokyo', country: 'Japan' }, { city: 'Bangkok', country: 'Thailand' }], 'Asia'
-expected output: [{ city: 'Tokyo', country: 'Japan', continent: 'Asia' }, { city: 'Bangkok', country: 'Thailand', continent: 'Asia' }]
- */
+// re-write the following using a for loop: var i = 20; while (i >= 0) { console.log(i); i--; }
+
+
+for (i = 20; i >= 0; i--) {
+    console.log(i); i--;
+} //✅
+
+
+
+
+// Add ‘strawberry’ to the beginning, middle, and end of the array. var fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
+
+var fruits = ["mango", "blueberries", "oranges", "banana", "papaya", "kiwi"];
+
+fruits.push("strawberry");
+fruits.unshift("strawberry");
+
+fruits.splice(4,0, "strawberry");
+
+console.log(fruits)   //✅
 
 
 

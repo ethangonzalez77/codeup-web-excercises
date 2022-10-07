@@ -1,0 +1,15 @@
+.jumbotron{
+    display: flex;
+    align-items: center;
+    height: 346px;
+    background-size: cover;
+    background-image: url("../cu_images/pizza.png");
+    }
+h1{
+    width: 100%;
+    opacity: 0.6;
+    .badge, .rounded-pill .bg-secondary
+}
+/*.badge, .rounded-pill .bg-secondary{*/
+/*    margin: 1%;*/
+/*}*/

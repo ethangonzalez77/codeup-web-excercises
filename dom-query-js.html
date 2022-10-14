@@ -14,7 +14,10 @@
   <li data-dbid="5">Item 5</li>
 </ul>
 
-
+<button id="btn1">change heading!</button>
+<button id="btn2">change "Hello Again" color</button>
+<button id="btn3">change item3 color</button>
+<button id="btn4">change "Mission Accomplished!"</button>
 
 <h2 id="sub-header">Hello Again.</h2>
 <p class="sub-paragraph">
@@ -34,7 +37,7 @@
     var mainHeader = document.getElementById("main-header");
 
     // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-    mainHeader.innerHTML = "JavaScript is Cool";
+    // mainHeader.innerHTML = "JavaScript is Cool";
 
 
     // TODO: Uncomment the next line and get the sub header element by id
@@ -65,6 +68,41 @@
 
        // console.log(subParagraphs[0].innerHTML);👈 just for refrence
    subParagraphs[0].innerHTML = "Mission Accomplished!";
+
+
+   // create 4 buttons 🎮🎮🎮🎮🎮🎮🎮🎮🎮🎮🎮
+
+    //first button changes Hello World 👈👈👈👈
+    var header = function (event) {
+      mainHeader.innerHTML = "JavaScript is Cool";
+    }
+    document.getElementById('btn1').addEventListener('click', header)
+
+
+//     second button changes "Hello Again" header 👈👈👈👈
+    var header2 = function (event) {
+      subHeader.style.color = "#ff1666";
+    }
+    document.getElementById('btn2').addEventListener('click', header2);
+
+
+// /  third button changes specifically item 3 color 👈👈👈👈
+    var header3 = function (event) {
+      listItems[3].style.color = "#21ead3";
+    }
+    document.getElementById('btn3').addEventListener('click', header3);
+
+
+// fourth button changes "Mission Accomplished!" to a different text 👈👈👈👈
+    var header4 = function (event) {
+      subParagraphs[0].innerHTML = "Hidden Message!";
+    }
+    document.getElementById('btn4').addEventListener('click', header4);
+
+
+
+
+
 
 
   })();

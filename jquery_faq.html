@@ -3,8 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <title>jquery_faq</title>
+
+    <style>
+        .invisible{
+        visibility: hidden;
+        }
+
+
+
+
+    </style>
+
+
+
 </head>
 <body>
+<a href="#" id="visible">Click to see something cool!!!</a>
+
+<dl>
+    <dt>top 10 comicbook charecters</dt>
+    <dd class="invisible visible">here is a list of comicbook charecters both heros and villans from different companies like marvel, dc, or image comics, in no paticular order. </dd>
+
+    <dt>green lantern</dt>
+    <dd class="invisible visible">there is more than one green lantern</dd>
+
+    <dt>silver surfer</dt>
+    <dd class="invisible visible">the charecter looks really cool, cant wait to see this chrecter get his own movie</dd>
+
+    <dt>martain manhunter</dt>
+    <dd class="invisible visible">he has really cool powers and can probly fight of the whole avengers by himsel, a long as they don't have a flame thrower</dd>
+
+    <dt>hulk</dt>
+    <dd class="invisible visible">
+      he's really cool however, don't like how they made him weak in the movies
+    </dd>
+
+    <dt>batman</dt>
+    <dd class="invisible visible">
+        his movies are cool, the new one was cool
+    </dd>
+
+    <dt>superman</dt>
+    <dd class="invisible visible">
+        when are we gunna a get a man of steel 2? i've been waiting for like 7 years now.
+    </dd>
+
+    <dt>wolverine</dt>
+    <dd class="invisible visible">
+        cant wait for the new game that's gunna be made by insomniac
+    </dd>
+
+    <dt>spawn</dt>
+    <dd class="invisible visible">
+        when are we guna get a new movie? and a new video game? we have been waiting!!!
+    </dd>
+
+    <dt>peace maker</dt>
+    <dd class="invisible visible">
+       the show was awesome
+    </dd>
+
+    <dt>blade</dt>
+    <dd class="invisible visible">
+        this movie was awesome! however, im worried about the new movie since its now technically gunna be a disney movie
+    </dd>
+</dl>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--this needs to be first 👆👆👆👆👆👆👆👆👆👆👆-->
+<script>
+    // dont do this 👇👇👇👇👇👇👇
+    // $('.invisible').css({
+    //     'color': 'firebrick',
+    //     'background-color': 'papayawhip',
+    //     'visibility': 'hidden'
+    // });
+
+
+    // $(document).ready(function() {
+    //     $('#visible').click(function(event) {
+    //         event.preventDefault();
+    //         $('.invisible').toggleClass('.yoke');
+    //     })
+    // })
+// dont do this 👆👆👆👆👆👆
+
+
+    $('a').click(function(event){
+        $('dd').toggleClass('invisible');
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
 
 </body>
 </html>

@@ -6,12 +6,25 @@
 </head>
 <body>
 
-<script>
+<div class="codeup" id="b1">
+    <h1 class="codeup1" id="b2">Hello World</h1>
+    <p  id="codeup">A list of programming languages</p>
+    <ul class="codeup" id="b4">Javascript</ul>
+    <li class="a5" id="b5">C++</li>
+    <li class="a5" id="b5">C</li>
+    <li class="a5" id="b5">C#</li>
+</div>
 
-    window.onload = function() {
-        alert( 'The page has finished loading!' );
-    }
-</script>
+
+
+
+<p id="codeup2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur culpa cupiditate hic inventore odio quidem quod! Ad autem blanditiis dicta dignissimos excepturi illum nemo, officia quaerat quo reprehenderit, veniam.</p>
+
+
+<p>Please type something into this form:</p>
+<form>
+    <input type="text" id="textfield" name="textfield" placeholder="Type Here"/>
+</form>
 
 
 
@@ -19,5 +32,77 @@
 
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--this needs to be first 👆👆👆👆👆👆👆👆👆👆👆-->
+
+
+
+
+
+<script>
+    // window.onload = function() {
+    //     alert( 'The page has finished loading!' );
+    // }
+
+    // var contents = jQuery('#b5').html();
+    // alert(contents);
+    //
+    // var contents = jQuery('#b5').html();
+    // alert(contents);
+
+    // $('.codeup').css('border', '1px solid red');
+
+    // $('li').css('font-size', '20px');
+    //
+    // $('*').css('font-size', '20px');
+    //
+    // var contents = $('h1').html();
+    // alert(contents);
+    //
+    // $('h1,p,li').css('background-color', '#FF0');
+
+    $('.codeup1').click(function() {
+        $('.codeup1').css('background-color', 'blue' );
+        alert('h1 with id "codeup" was clicked');
+    });
+    $('#codeup2').dblclick(function(e) {
+        $('#codeup2').css('font-size', '18px' );
+        alert('h1 with the id of "codeup" was double clicked!');
+    });
+    $('li').hover(
+        function() {
+            $(this).css('background-color', '#FF0');
+        },
+        function() {
+            $(this).css('background-color', '#FFF');
+        }
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

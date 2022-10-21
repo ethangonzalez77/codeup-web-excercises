@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+  "use strict";
+
+  let userInput = [];
+  let konamiCode = [38, 38, 40, 40, 37, 39, 37,39, 66, 65, 13];
+  let soundBite = new Audio('sound-board/mixkit-unlock-new-item-game-notification-254.wav');
+  $(document).keyup(function(event){
+    userInput.push(event.keyCode);
+    if(event.keyCode == 13) {
+      userInput.every((val, index) => val === konamiCode[index])
+      alert('YOU have 30 LIVES!')
+
+
+      $('*').css('background-image', 'url(" cu_images/S15H2Vk.jpeg ")');
+      $('h1').css('color', 'red');
+      soundBite.play();
+    }
+    else if(event.keyCode !== 13) {
+        alert('Game over... If only their was a cheat code that gave you extra lives.')
+      }
+      console.log(event.keyCode);
+    })
+
+
+
+  //
+  // });
+  //
+  //
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

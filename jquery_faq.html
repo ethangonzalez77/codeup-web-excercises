@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>jquery_faq</title>
-
     <style>
         .invisible{
         visibility: hidden;
@@ -11,13 +10,23 @@
 
 
 
-
     </style>
-
-
-
 </head>
 <body>
+
+
+
+
+
+
+<h3><a href="#" id="tb">Comic Book Publishers</a></h3>
+<ul>
+    <li>Marvel</li>
+    <li>Dc</li>
+    <li>Image</li>
+</ul>
+
+
 <a href="#" id="visible">Click to see something cool!!!</a>
 
 <dl>
@@ -69,6 +78,8 @@
     </dd>
 </dl>
 
+<!--transversing excercise 👇👇👇👇-->
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <!--this needs to be first 👆👆👆👆👆👆👆👆👆👆👆-->
 <script>
@@ -93,9 +104,9 @@
         $('dd').toggleClass('invisible');
     })
 
-
-
-
+    $('a').click(function(event){
+        $('li').toggleClass('yback');;
+    })
 
 
 

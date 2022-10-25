@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
+    <style>
+        #map{
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
+
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script>
+    const key = "pk.eyJ1IjoiZWxlZTAwNzciLCJhIjoiY2w5bjhlOWc5MDJ5djNvbThhbGVrMDI3OSJ9.HCCZM-OTB6QLEjr8qyfvQA";
+
+    mapboxgl.accessToken = key;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        //TODO: Set your own zoom and center
+        zoom: 5,
+        center: [-98.64666, 29.51036],
+
+
+    //TODO: Set zoom on your own with a map.setZoom call in your console
+        map.setZoom
+    });
+    let marker = new mapboxgl.Marker()
+        .setLngLat([-98.64666, 29.51036])
+        .addTo(map)
+
+    let popup = new mapboxgl.Popup()
+        .setLngLat([-98.64666, 29.51036])
+        .addHTML("<p>Cool Beans</p>")
+        .addTo(map)
+
+    geocode("").then(function(result){
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+    //TODO: Add your own marker to where we've aligned your map so far
+
+
+    //TODO: Use the geocode method to add a 2nd marker and popup to your map, then center your map over it
+
+
+    //TODO: Try a reverse geocode yourself and see what address you get back for your coordinates - remember to send up a {lng: <lng>, lat: <lat>} object
+</script>
+</body>
+</html>

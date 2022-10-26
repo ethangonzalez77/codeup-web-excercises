@@ -13,18 +13,45 @@
     </style>
 </head>
 <body>
+<!--// for notes only 👇👇👇👇-->
+<!--<div>-->
+<!--    <h3 class="t1">this test</h3>-->
+<!--    <p>this is a child</p>-->
+<!--</div>-->
+<!--<div>-->
+<!--    <h3>this test 2</h3>-->
+<!--    <p>this is a child 2</p>-->
+<!--</div>-->
+<!--// for notes only 👆👆👆👆👆👆👆-->
 
 
+<button>press</button>
 
-
-
-
-<h3><a href="#" id="tb">Comic Book Publishers</a></h3>
+<h3>Comic Book Publishers</h3>
 <ul>
     <li>Marvel</li>
     <li>Dc</li>
     <li>Image</li>
 </ul>
+<h3>Comic Book Publishers</h3>
+
+<ul>
+    <li>Marvel</li>
+    <li>Dc</li>
+    <li>Image</li>
+</ul>
+<h3>Comic Book Publishers</h3>
+<ul>
+    <li>Marvel</li>
+    <li>Dc</li>
+    <li>Image</li>
+</ul>
+
+
+
+
+
+
 
 
 <a href="#" id="visible">Click to see something cool!!!</a>
@@ -104,9 +131,30 @@
         $('dd').toggleClass('invisible');
     })
 
-    $('a').click(function(event){
-        $('li').toggleClass('yback');;
+
+    $('button').click(function(){
+        $("ul").each(function () {
+            $(this).children().last().css("background-color", "yellow")
+         });
+        })
+    $('h3').click(function(){
+        $("ul").each(function () {
+            $(this).children().first().css("font-weight", "bold")
+        });
     })
+    $('li').click(function(){
+        $("ul").each(function () {
+            $(this).children().first().css("color", "blue")
+        });
+    })
+// for notes only 👇👇👇👇
+    //
+    // $('li').click(function(){
+    //     $("div").each(function () {
+    //         $(this).children().css("color", "blue")
+    //     });
+    // })
+    // for notes only 👆👆👆👆👆👆👆
 
 
 

@@ -1,10 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Weather API</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
+
+
+
+
+<div id="pizza"></div>
+<div id="taco"></div>
+<button id="click">click this</button>
+
+
+
+<div id='map' style='width:80%; height: 80vh;'></div>
+
+
+<div class="links">
+    <script src="js/keys.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+</div>
+
+<!--this is the meat and potatoes 🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖-->
+<div>
+    <script>
+        mapboxgl.accessToken = mapBoxKey;
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: [-98.4936, 29.4241], // starting position [lng, lat]
+            zoom: 9, // starting zoom
+            projection: 'globe' // display the map as a 3D globe
+        });
+        map.on('style.load', () => {
+            map.setFog({}); // Set the default atmosphere style
+        });
+
+
+        // this is the current weather  🗓🗓🗓🗓🗓🗓🗓START🗓🗓🗓🗓🗓🗓🗓
+        $.get("http://api.openweathermap.org/data/2.5/weather", {
+            APPID: openWeatherKey,
+            q:     "San Antonio, US"
+        }).done(function(data) {
+            console.log(data);
+
+
+        function todayWeather () {
+            let emptyHtml = " ";
+
+            emptyHtml += `
+                <h4>here is the Weather for today</h4>
+                <h5>Humidity: ${data.main.humidity}    </h5>
+                <h5>Wind: ${data.wind.speed}        </h5>
+                <h5>Pressure: ${data.main.pressure}    </h5>
+            `
+            $("#pizza").html(emptyHtml);
+        }
+        todayWeather()
+        });
+        // this is the current weather  🗓🗓🗓🗓🗓🗓🗓END🗓🗓🗓🗓🗓🗓🗓
+
+
+
+
+
+        // this is the Five day for cast 🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮START🔮🔮🔮🔮🔮🔮🔮
+        $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=26.11&lon=-97.16&appid=${openWeatherKey}`, {
+        }).done(function(data) {
+            console.log(data);
+            console.log(data.list[0].dt_txt);
+
+            function fiveDayCast (x) {
+                let emptyArr = [];
+
+                for (let i = 0; i < x.list.length; i++) {
+                    if (x.list[i].dt_txt.slice(-8) === `12:00:00`) {
+                        emptyArr.push(x.list[i])
+                    }
+                }
+                console.log(emptyArr);
+
+                let yes = "";
+                for (let i = 0; i < emptyArr.length; i++) {
+
+                    yes += `
+                         <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
+                        <h3>humid: ${emptyArr[i].main.humidity}</h3>
+                        <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                    `
+                }
+                $(`#taco`).html(yes);
+
+            }
+            fiveDayCast(data);
+        });
+        // this is the Five day for cast 🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮END🔮🔮🔮🔮🔮🔮🔮
+
+
+
+
+
+
+
+
+
+
+        // this is for the RESPONSIVE SEARCH BAR 🔍🔍🌐🔍🔍🌐🔍🔍🌐START🔍🔍🌐🔍🔍🌐
+        function searchBar () {
+            $("click").click( function () {
+                geocode(("userinput").value,mapBoxKey).then(function (result){
+                    console.log(result);
+                    map.setCenter(result);
+                    map.setZoom(15);
+                    let lng = result[1];
+                    let lat = result[0];
+                    console.log(lng);
+                    console.log(lat);
+
+                    $.get("http://api.openweathermap.org/data/2.5/forecast", {
+                        APPID: weatherKey,
+                        lat:    lat,
+                        lon:   lng,
+                        units: "imperial"
+                    }).done(function(data) {
+                        console.log(data);
+                        function fiveDays (x) {
+                            let newArray = [];
+                            for (let i = 0; i < x.list.length; i++) {
+                                if (x.list[i].dt_txt.slice(-8) === "12:00:00") {
+                                    newArray.push(x.list[i]);
+                                }
+                            }
+                            console.log(newArray);
+
+                            let yes = "";
+                            for (let i = 0; i < weatherList.length; i++) {
+                                yes += `
+                         <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
+                        <h3>humid: ${emptyArr[i].main.humidity}</h3>
+                        <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                    `
+                            }
+                            $("#taco").html(yes);
+                        }
+                        fiveDays();
+                    });
+                })
+            })
+        }
+        searchBar();
+        // this is for the RESPONSIVE SEARCH BAR 🔍🔍🌐🔍🔍🌐🔍🔍🌐END🔍🔍🌐🔍🔍🌐
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
+        function movablePin() {
+            map.on("moved", function() {
+                maker.setLngLat(map.getCenter())
+                onDragEnd()
+            });
+            function onDragEnd() {
+                let lngLat = marker.getLngLat();
+                let lng = lngLat.lng;
+                let lat = lngLat.lat;
+                console.log(lng);
+
+                $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=26.11&lon=-97.16&appid=${openWeatherKey}`, {
+                }).done(function(data) {
+                    console.log(data);
+
+                    function weatherForcast(x) {
+                        let weatherList = [];
+                        for (let i = 0; i < x.list.length; i++) {
+                            weatherList.push(x.list[i])
+                        }
+                    }
+
+                    console.log(weatherList);
+
+                    let yes = "";
+                    for (let i = 0; i < weatherList.length; i++) {
+                        yes += `
+                         <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
+                        <h3>humid: ${emptyArr[i].main.humidity}</h3>
+                        <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                    `
+                    }
+                    $("#taco").html(yes);
+                });
+                    weatherForcast(data);
+                }
+            marker.on('dragend', onDragEnd);
+            }
+            movablePin();
+        // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
+        // $.ajax("http://api.openweathermap.org/data/2.5/weather", {
+        //     data: {
+        //         APPID: openWeatherKey,
+        //         q:     "San Antonio, US"
+        //     }
+        // }).done(function(data) {
+        //     console.log(data);
+        //     new mapboxgl.Popup({ closeOnClick: false })
+        //         .setLngLat(data.coord)
+        //         .setHTML( `<h1>humidity is: ${data.main.humidity}%</h1>`)
+        //         .addTo(map);
+        // })
+        // $.get("http://api.openweathermap.org/data/2.5/forecast?", {
+        //     APPID: openWeatherKey,
+        //     id:     4726206,
+        //     units: "imperial"
+        // }).done(function(data) {
+        //     console.log(data);
+        //
+        // })
+        //
+        //
+        // var myArr = [];
+        // for (i = 0; i < document.getElementById('qbeansLength').value; i++){
+        //     myArr.push( {"label" : document.getElementById('queueID'+i).value });
+        // }
+
+        //////////////////////
+
+
+
+        // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+
+
+
+
+
+    </script>
+</div>
+
+
 
 </body>
 </html>

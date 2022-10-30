@@ -1,7 +1,6 @@
 /* screen sizes 500px and up */
 @media screen and (max-width:768px) {
     body {
-        background-color: #0fb784;
         display: flex;
         flex-direction: column;
     }
@@ -22,7 +21,7 @@
         justify-content: center;
         align-items: center;
         padding: 20px;
-        background-color: lightblue;
+        background-color: #ccffff;
         margin-left: 10px;
         margin-right: 10px;
         margin-bottom: 1px;
@@ -53,7 +52,7 @@
         justify-content: center;
         align-items: center;
         padding: 4px;
-        background-color: #a9a4a4;
+        background-color: #ccc;
         margin-left: -40px;
         margin-bottom: 1em;
         padding: 1em;
@@ -63,7 +62,7 @@
         justify-content: center;
         align-items: center;
         padding: 4px;
-        background-color: #a9a4a4;
+        background-color: #ccc;
         margin-left: -40px;
         margin-bottom: 1em;
         padding: 1em;
@@ -73,7 +72,7 @@
         justify-content: center;
         align-items: center;
         padding: 4px;
-        background-color: #a9a4a4;
+        background-color: #ccc;
         margin-left: -40px;
         margin-bottom: 1em;
         padding: 1em;
@@ -83,7 +82,7 @@
         justify-content: center;
         align-items: center;
         padding: 4px;
-        background-color: #a9a4a4;
+        background-color: #ccc;
         margin-left: -40px;
         margin-bottom: 1em;
         padding: 1em;
@@ -104,51 +103,51 @@
 
 @media screen and (min-width:780px){
     body {
-        background-color: gold;
         display: flex;
         flex-direction: column;
+        margin: 3em;
     }
-
+    .hidden-on-desktop{
+        display: none;
+    }
   h1 {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 4px;
-
-        //👈
       margin-bottom: 1px;
       margin-top: 5px;
-
-      background-color: #a12d4a;
   }
-
     .nav-links {
         list-style-type: none;
         display: flex;
         flex-direction: column;
-        background-color: #227f43;
-
-
+        float: right;
     }
-
+    .side-by-side{
+        display: flex;
+        margin-bottom: 2em;
+    }
     h1, .nav-links {
         display: flex;
         align-items: flex-start;
         flex-direction: row;
         margin-right: auto;
     }
-
     li{
         padding-right: 10px;
         display: inline-block;
-
     }
-
-
     section {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+    }
+    img{
+        width: 100%;
+    }
+    footer{
+        padding-top: 4em;
     }
 }
 

@@ -4,19 +4,72 @@
     <meta charset="UTF-8">
     <title>Weather API</title>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+    <style>
+        html{
+            background: black;
+            background-image: url("cu_images/tumblr_obfjz6Bd9f1runoqyo2_r1_540.gif");
+            background-size: cover;
+            font-family: 'Poor Story', cursive;
+        }
+        #pizza{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background: #0fb784;
+            border: solid 1px black;
+            border-radius: 15px;
+
+        }
+        .container{
+            border: solid 1px blue;
+            background: rebeccapurple;
+            height: 15em;
+            width: 10em;
+            justify-self: center;
+            float: right;
+            margin: 0.5em;
+            text-align: center;
+            border-radius: 10px;
+        }
+        #taco{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        h2{
+            color: rebeccapurple;
+        }
+
+    </style>
 </head>
 <body>
 
+    <div>
+        <h2 class="header">Weather App<span class="city">Current city</span></h2>
+    </div>
 
 
 
-<div id="pizza"></div>
-<div id="taco"></div>
-<button id="click">click this</button>
+    <form class="input">
+        <label for="address">Place</label>
+        <input type="text" id="address">
+        <button id="button" type="button">Find</button>
+    </form>
+    <br>
+    <div id="main"></div>
 
 
 
-<div id='map' style='width:80%; height: 80vh;'></div>
+    <div id="pizza"></div>
+    <div id="taco"></div>
+
+
+
+
+<div id='map' style='width:100%; height: 70vh;'></div>
 
 
 <div class="links">
@@ -25,6 +78,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+
+    <script src="js/mapbox-geocoder-utils.js"></script>
 </div>
 
 <!--this is the meat and potatoes 🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖🥔🍖-->
@@ -55,10 +110,11 @@
             let emptyHtml = " ";
 
             emptyHtml += `
-                <h4>here is the Weather for today</h4>
+                <h4>San Antonio Weather:</h4>
                 <h5>Humidity: ${data.main.humidity}    </h5>
                 <h5>Wind: ${data.wind.speed}        </h5>
                 <h5>Pressure: ${data.main.pressure}    </h5>
+                 <h5>Temp: ${data.main.temp}    </h5>
             `
             $("#pizza").html(emptyHtml);
         }
@@ -89,14 +145,16 @@
                 let yes = "";
                 for (let i = 0; i < emptyArr.length; i++) {
 
-                    yes += `
+                    yes += `<div class="container">
                          <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
                         <h3>humid: ${emptyArr[i].main.humidity}</h3>
                         <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                        <h3>Date: ${emptyArr[i].dt_txt.slice(0, 10)}</h3>
+                        <h3>Temp: ${emptyArr[i].main.temp}</h3>
+                        </div>
                     `
                 }
                 $(`#taco`).html(yes);
-
             }
             fiveDayCast(data);
         });
@@ -104,57 +162,108 @@
 
 
 
-
-
-
-
-
-
-
         // this is for the RESPONSIVE SEARCH BAR 🔍🔍🌐🔍🔍🌐🔍🔍🌐START🔍🔍🌐🔍🔍🌐
-        function searchBar () {
-            $("click").click( function () {
-                geocode(("userinput").value,mapBoxKey).then(function (result){
+        function weatherBySearch() {
+            $('#button').click(function (e) {
+                e.preventDefault();
+                geocode($("#address").val(), mapBoxKey ).then(function (result) {
                     console.log(result);
                     map.setCenter(result);
-                    map.setZoom(15);
-                    let lng = result[1];
-                    let lat = result[0];
+                    map.setZoom(11);
+                    let lng = result[0];
+                    let lat = result[1];
                     console.log(lng);
                     console.log(lat);
-
+                    let marker = new mapboxgl.Marker({dragable: true}).setLngLat([lng, lat]).addTo(map);
                     $.get("http://api.openweathermap.org/data/2.5/forecast", {
-                        APPID: weatherKey,
+                        APPID: openWeatherKey,
                         lat:    lat,
                         lon:   lng,
                         units: "imperial"
                     }).done(function(data) {
-                        console.log(data);
-                        function fiveDays (x) {
-                            let newArray = [];
+                        console.log('5 day forecast', data);
+                        map.on("moveend", function() {
+                            marker.setLngLat(map.getCenter());
+                            onDragEnd()
+                        });
+                        function fiveDayCast (x) {
+                            let emptyArr = [];
+
                             for (let i = 0; i < x.list.length; i++) {
-                                if (x.list[i].dt_txt.slice(-8) === "12:00:00") {
-                                    newArray.push(x.list[i]);
+                                if (x.list[i].dt_txt.slice(-8) === `12:00:00`) {
+                                    emptyArr.push(x.list[i])
                                 }
                             }
-                            console.log(newArray);
+                            console.log(emptyArr);
 
                             let yes = "";
-                            for (let i = 0; i < weatherList.length; i++) {
-                                yes += `
+                            for (let i = 0; i < emptyArr.length; i++) {
+
+                                yes += `<div class="container">
                          <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
                         <h3>humid: ${emptyArr[i].main.humidity}</h3>
                         <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                        <h3>Date: ${emptyArr[i].dt_txt.slice(0, 10)}</h3>
+                        <h3>Temp: ${emptyArr[i].main.temp}</h3>
+
+                        </div>
                     `
                             }
-                            $("#taco").html(yes);
+                            $(`#taco`).html(yes);
+
                         }
-                        fiveDays();
+                        fiveDayCast(data);
+                        function onDragEnd() {
+
+
+                            let lngLat = marker.getLngLat();
+                            let lng = lngLat.lng;
+                            let lat = lngLat.lat;
+                            console.log(lng);
+                            $.get("http://api.openweathermap.org/data/2.5/forecast", {
+                                APPID: openWeatherKey,
+                                lat: lat,
+                                lon: lng,
+                                units: "imperial"
+                            }).done(function (data) {
+                                console.log(data);
+
+                                function fiveDayCast (x) {
+                                    let emptyArr = [];
+
+                                    for (let i = 0; i < x.list.length; i++) {
+                                        if (x.list[i].dt_txt.slice(-8) === `12:00:00`) {
+                                            emptyArr.push(x.list[i])
+                                        }
+                                    }
+                                    console.log(emptyArr);
+
+                                    let yes = "";
+                                    for (let i = 0; i < emptyArr.length; i++) {
+
+                                        yes += `<div class="container">
+                         <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
+                        <h3>humid: ${emptyArr[i].main.humidity}</h3>
+                        <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+                        <h3>Date: ${emptyArr[i].dt_txt.slice(0, 10)}</h3>
+                        <h3>Temp: ${emptyArr[i].main.temp}</h3>
+                        </div>
+                    `
+                                    }
+                                    $(`#taco`).html(yes);
+
+                                }
+                                fiveDayCast(data);
+                            })
+                        }
+                        marker.on("dragend", onDragEnd)
+
                     });
                 })
-            })
+            });
         }
-        searchBar();
+        weatherBySearch();
+        console.log("ypppppypppp")
         // this is for the RESPONSIVE SEARCH BAR 🔍🔍🌐🔍🔍🌐🔍🔍🌐END🔍🔍🌐🔍🔍🌐
 
 
@@ -162,69 +271,49 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
-        function movablePin() {
-            map.on("moved", function() {
-                maker.setLngLat(map.getCenter())
-                onDragEnd()
-            });
-            function onDragEnd() {
-                let lngLat = marker.getLngLat();
-                let lng = lngLat.lng;
-                let lat = lngLat.lat;
-                console.log(lng);
-
-                $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=26.11&lon=-97.16&appid=${openWeatherKey}`, {
-                }).done(function(data) {
-                    console.log(data);
-
-                    function weatherForcast(x) {
-                        let weatherList = [];
-                        for (let i = 0; i < x.list.length; i++) {
-                            weatherList.push(x.list[i])
-                        }
-                    }
-
-                    console.log(weatherList);
-
-                    let yes = "";
-                    for (let i = 0; i < weatherList.length; i++) {
-                        yes += `
-                         <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
-                        <h3>humid: ${emptyArr[i].main.humidity}</h3>
-                        <h3>pressure: ${emptyArr[i].main.pressure}</h3>
-                    `
-                    }
-                    $("#taco").html(yes);
-                });
-                    weatherForcast(data);
-                }
-            marker.on('dragend', onDragEnd);
-            }
-            movablePin();
-        // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
-
+        //
+        // // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
+        // function movablePin() {
+        //     map.on("moved", function() {
+        //         maker.setLngLat(map.getCenter())
+        //         onDragEnd()
+        //     });
+        //     function onDragEnd() {
+        //         let lngLat = marker.getLngLat();
+        //         let lng = lngLat.lng;
+        //         let lat = lngLat.lat;
+        //         console.log(lng);
+        //
+        //         $.get(`https://api.openweathermap.org/data/2.5/forecast?lat=26.11&lon=-97.16&appid=${openWeatherKey}`, {
+        //         }).done(function(data) {
+        //             console.log(data);
+        //
+        //             function weatherForcast(x) {
+        //                 let weatherList = [];
+        //                 for (let i = 0; i < x.list.length; i++) {
+        //                     weatherList.push(x.list[i])
+        //                 }
+        //             }
+        //
+        //             console.log(weatherList);
+        //
+        //             let yes = "";
+        //             for (let i = 0; i < weatherList.length; i++) {
+        //                 yes += `
+        //                  <h3>wind speed: ${emptyArr[i].wind.speed}</h3>
+        //                 <h3>humid: ${emptyArr[i].main.humidity}</h3>
+        //                 <h3>pressure: ${emptyArr[i].main.pressure}</h3>
+        //             `
+        //             }
+        //             $("#taco").html(yes);
+        //         });
+        //             weatherForcast(data);
+        //         }
+        //     marker.on('dragend', onDragEnd);
+        //     }
+        //     movablePin();
+        // // this is the MOVABLE/DRAGABLE PIN 📌📌📌📌📌📌📌📌📌📌START📌📌📌📌📌📌
+        //
 
 
 

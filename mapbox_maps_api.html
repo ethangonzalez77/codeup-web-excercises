@@ -30,7 +30,7 @@
 <!-- Custom JS -->
 <script>
 
-  const key ="pk.eyJ1IjoiZWxlZTAwNzciLCJhIjoiY2w5bjhlOWc5MDJ5djNvbThhbGVrMDI3OSJ9.HCCZM-OTB6QLEjr8qyfvQA";
+  const key ="pk.eyJ1IjoiZWxlZTAwNzciLCJhIjoiY2w5dzBlcDBzMmo5MDNvcDg1anhkdjJndSJ9.TIzs4QM-lcc_8PKTozhlcw";
 
   mapboxgl.accessToken = key;
   var map = new mapboxgl.Map({
@@ -41,30 +41,29 @@
   });
 
   // the  geocode method from mapbox-geocoder-utils.js
-  geocode("2401 W Pflugerville Pkwy, Round Rock, TX 78664", key).then(function(result) {
+  geocode("952 Springdale Rd, Austin, TX 78702", key).then(function(result) {
     console.log(result);
     map.setCenter(result);
-    map.setZoom(16);
+
 
 
   var marker = new mapboxgl.Marker()
           .setLngLat([-97.74755, 30.29916])
           .addTo(map);
+           map.setZoom(14);
 
   var popup = new mapboxgl.Popup()
-          .setLngLat([-97.74755, 30.29916])
-          .setHTML("<p>WhatABurger!</p>")
-          .addTo(map)
-    marker.setPopup(popup);
+          .setHTML("<p>WhatABurger</p>")
+          marker.setPopup(popup);
   });
 
   let restaurants = [
     {
-      name: "WhatABurger",
-      long: -97.7513802107215,
-      lat: 30.26197702756318,
+      name: "Duncan Donuts",
+      long: -97.98338000008303,
+      lat: 30.2114528288855,
       address: "601 Barton Springs Rd, Austin, TX 78704",
-      info: "started in corpus christi"
+      info: "has some good coffee"
     },
     {
       name: "Sandy's hamburgers",
